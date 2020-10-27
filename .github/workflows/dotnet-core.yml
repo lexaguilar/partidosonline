@@ -25,13 +25,14 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
     - name: Publish
       run: |
-        dotnet publish -c Release -o dotnetcorewebapp
+        dotnet publish -c Release -o dotnetcorewebapp    
+        
     - name: 'Run Azure webapp deploy action using publish profile credentials'
-      uses: azure/webapps-deploy@v1
-      with:
-        app-name: qrmenu # Replace with your app name
-        publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE2 }} # Replace with the name of your publish profile
-        package: ./dotnetcorewebapp  
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: partidoonline # Replace with your app name
+        publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE2  }} # Define secret variable in repository settings as per action documentation
+        package: './dotnetcorewebapp'
     
     - name: Send Push Notification
       uses: techulus/push-github-action@1.0.0
