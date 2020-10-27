@@ -2,9 +2,9 @@ name: .NET Core
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
         dotnet publish -c Release -o dotnetcorewebapp    
         
     - name: 'Run Azure webapp deploy action using publish profile credentials'
-      uses: azure/webapps-deploy@v2
+      uses: Azure/webapps-deploy@v1
       with: 
         app-name: partidoonline # Replace with your app name
         publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE  }} # Define secret variable in repository settings as per action documentation
