@@ -1,0 +1,70 @@
+﻿@{
+  ViewData["Title"] = "Próximo juego";
+}
+<div class="row">
+  <div class="col-md-8">
+    <h1>@ViewData["Title"]</h1>
+    <h3>Fc Barcelona vs Real Madrid</h3>
+    <h4 style="color: grey;">Sabado 24 oct 8:00 am (GMT-6)</h4>
+    <img src="/images/next.jpg" alt="">
+
+    <div class="container">
+      <h1 id="headline">Faltan:</h1>
+      <div id="countdown">
+        <ul>
+          <li><span id="days"></span>dias</li>
+          <li><span id="hours"></span>horas</li>
+          <li><span id="minutes"></span>minutos</li>
+          <li><span id="seconds"></span>segundos</li>
+        </ul>
+      </div>
+      <div class="message">
+        <div id="content">
+          <span class="emoji"></span>
+          <span class="emoji"></span>
+          <span class="emoji"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    @await Html.PartialAsync("~/Views/shared/_Next.cshtml")
+    @await Html.PartialAsync("~/Views/shared/_Paypal.cshtml")
+  </div>
+</div>
+
+<script>
+  (function () {
+  const second = 1000,
+  minute = second * 60,
+  hour = minute * 60,
+  day = hour * 24;
+
+  let birthday = "Oct 24, 2020 08:00:00",
+  countDown = new Date(birthday).getTime(),
+  x = setInterval(function () {
+
+  let now = new Date().getTime(),
+  distance = countDown - now;
+
+  document.getElementById("days").innerText = Math.floor(distance / (day)),
+  document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
+  document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+  document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
+
+  //do something later when date is reached
+  if (distance < 0) {
+  let headline = document.getElementById("headline"),
+  countdown = document.getElementById("countdown"),
+  content = document.getElementById("content");
+
+  headline.innerText = "It's my birthday!";
+  countdown.style.display = "none";
+  content.style.display = "block";
+
+  clearInterval(x);
+  }
+  //seconds
+  }, 0)
+  }());
+</script>

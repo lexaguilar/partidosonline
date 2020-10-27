@@ -1,0 +1,39 @@
+@model Matches
+@{
+    ViewData["Title"] = "En vivo ";
+}
+
+<h4>Partido aun no inicia</h4>
+<input type="hidden" asp-for="Id">
+<div class="row">
+        <div class="col-md-8">
+            <table style="border: solid 1px #efefef;">
+                <tr>
+                    <td width="150px" style="text-align: center;">@Model.TeamHome.Name </td>
+                    <td width="50px" style="text-align: center;">VS</td>
+                    <td width="150px" style="text-align: center;">@Model.TeamAway.Name</td>
+                </tr>
+                <tr>
+                    <td width="150px" style="text-align: center;"><img width="100px" src="/images/@Model.TeamHome.ImageName" alt=""></td>
+                    <td width="50px" style="text-align: center;"><p id="atTime">@Model.EventDate</p></td>
+                    <td width="150px" style="text-align: center;"><img width="100px" src="/images/@Model.TeamAway.ImageName" alt=""></td>
+                </tr>
+                <tr style="border-top: solid 1px #efefef;">
+                    <td colspan="3" style="text-align: center;"><a href="/home/live/@Model.Id" class="btn btn-outline-secondary btn-block">Info</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h4>Otros partidos</h4>
+            <div id="matchesNext">
+
+            </div>  
+            @await Html.PartialAsync("~/Views/shared/_Paypal.cshtml")
+        </div>
+    </div>
+
+@section Scripts
+    {  
+        <script src="~/js/live-coming.js" type="module" asp-append-version="true"></script>
+        <script src="~/js/live-preview.js" type="module" asp-append-version="true"></script>
+    }

@@ -1,0 +1,57 @@
+﻿@model ViewMatch
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <h4><span class="badge badge-secondary" style="background-color: #F44336; padding: 0px 10px;">Online <svg style="width: 25px;" id="i-feed" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="2">
+                    <circle cx="6" cy="26" r="2" fill="currentColor" />
+                    <path d="M4 15 C11 15 17 21 17 28 M4 6 C17 6 26 15 26 28" />
+                </svg></span>
+        </h4>
+        <div id="matchMain">            
+            <h3>@Model.TeamHome vs @Model.TeamAway</h3>
+            <h4 id="myTime" style="color: grey;"></h4>
+            <img src="/images/next.jpg" style="width: 100%;" alt="">
+            @if(Model.IsLive){
+                <br/>
+                <a style="margin-top: 10px;" href="/home/live/@Model.Id" class="btn btn-outline-secondary btn-block">Ver ahora</a>
+            }else{
+                <div class="container">
+                    <h1 id="headline">Faltan:</h1>
+                    <div id="countdown">
+                        <ul>
+                            <li><span id="days"></span>dias</li>
+                            <li><span id="hours"></span>horas</li>
+                            <li><span id="minutes"></span>minutos</li>
+                            <li><span id="seconds"></span>segundos</li>
+                        </ul>
+                    </div>
+                    <div class="message">
+                        <div id="content">
+                            <span class="emoji"></span>
+                            <span class="emoji"></span>
+                            <span class="emoji"></span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h4>Proximos partidos</h4>
+        <div id="matchesNext">
+            <h5>No hay programación de momento</h5>
+        </div>     
+        @await Html.PartialAsync("~/Views/shared/_Paypal.cshtml")
+
+    </div>
+</div>
+@section Scripts
+{  
+    <script src="~/js/live2.js" type="module" asp-append-version="true"></script>
+}

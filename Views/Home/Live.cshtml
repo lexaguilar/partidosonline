@@ -1,0 +1,40 @@
+﻿@model Matches
+@{
+    ViewData["Title"] = "En vivo ";
+}
+
+<main role="main" class="pb-3" style="display:flex; margin : auto">
+    <input type="hidden" asp-for="Id">
+    <div class="row">
+        <div class="col-md-8">
+
+       
+        <link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet">
+        
+        <h3>@Model.TeamHome.Name vs @Model.TeamAway.Name</h3>
+        <video id='hls-example' class="video-js vjs-default-skin" width="700" height="500" controls>
+            <source type="application/x-mpegURL" src="@Model.Url">
+        </video>
+
+        <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.14.1/videojs-contrib-hls.js"></script>
+        <script src="https://vjs.zencdn.net/7.2.3/video.js"></script>
+
+        <script>
+            var player = videojs('hls-example');
+            player.play();
+        </script>
+         </div>
+        <div class="col-md-4">
+            <h4>Otros partidos</h4>
+            <div id="matchesNext">
+
+            </div>  
+            @await Html.PartialAsync("~/Views/shared/_Paypal.cshtml")
+        </div>
+    </div>
+    @section Scripts
+    {  
+        <script src="~/js/live-coming.js" type="module" asp-append-version="true"></script>
+    }
+</main>

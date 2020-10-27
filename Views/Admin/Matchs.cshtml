@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Matchs Page";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.1.8/css/dx.common.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.1.8/css/dx.light.css" />
+<div class="row">
+    <div class="col-12"><h3>Matchs</h3></div>
+    <div class="col-12"><a href="/admin/teams">Admin teams</a></div>      
+    <div class="col-md-12">
+       <div id="grid"></div>
+    </div>    
+</div>
+@section Scripts
+{   
+    <script src="https://cdn3.devexpress.com/jslib/20.1.8/js/dx.all.js"></script>
+    <script src="~/js/matchs.js" type="module" asp-append-version="true"></script>
+}

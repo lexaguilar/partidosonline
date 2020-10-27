@@ -1,0 +1,26 @@
+<h4>Subscribirse</h4>
+
+<div class="alert alert-primary">Subscribase por $1 USD para apoyar a seguir compartiendo partidos en linea</div>
+<div id="paypal-button-container"></div>
+<script
+    src="https://www.paypal.com/sdk/js?client-id=AdoGDf-k5Q3FoGvv7MkU1ib_NYCyirfeiDQmVrNkeGZJx5CiZrX2Pce6F_icx8yMU9gAjIru-GeyJDBG&vault=true"
+    data-sdk-integration-source="button-factory"></script>
+<script>
+    paypal.Buttons({
+    style: {
+    shape: 'rect',
+    color: 'gold',
+    layout: 'vertical',
+    label: 'subscribe'
+    },
+    createSubscription: function (data, actions) {
+    return actions.subscription.create({
+    'plan_id': 'P-8SA018244S706944WL6I47AI'
+    });
+    },
+    onApprove: function (data, actions) {
+    alert(data.subscriptionID);
+    }
+    }).render('#paypal-button-container');
+</script>
+
