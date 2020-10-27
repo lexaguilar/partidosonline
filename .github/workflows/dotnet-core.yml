@@ -38,4 +38,4 @@ jobs:
       uses: techulus/push-github-action@1.0.0
       env:
         API_KEY: ${{ secrets.API_KEY }}
-        MESSAGE: "Una nueva publicación de partidos online link https://partidosonline.azurewebsites.net/"
+        MESSAGE: "Nueva publicación de partidos online link https://partidosonline.azurewebsites.net/"
