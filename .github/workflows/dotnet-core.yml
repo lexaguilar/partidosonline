@@ -31,7 +31,7 @@ jobs:
       uses: Azure/webapps-deploy@v1
       with: 
         app-name: partidoonline # Replace with your app name
-        publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE  }} # Define secret variable in repository settings as per action documentation
+        publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE2  }} # Define secret variable in repository settings as per action documentation
         package: './dotnetcorewebapp'
     
     - name: Send Push Notification
