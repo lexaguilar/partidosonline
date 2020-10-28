@@ -1,0 +1,26 @@
+@model string[]
+@{
+    ViewData["Title"] = "Matchs Page";
+}
+<form enctype="multipart/form-data" method="post" asp-controller="admin" asp-action="upload">
+    <dl>
+        <dt>
+            <label>File</label>
+        </dt>
+        <dd>
+            <input id="file" type="file" name="file">
+        </dd>
+    </dl>
+    <input type="submit" value="Upload" class="btn btn-primary" />
+</form> 
+
+<div class="row">
+    <div class="col-12"><h3>Images</h3></div>
+    @foreach (var item in Model)
+    {
+         <div class="col-2">
+             @item
+             <img src="/images/@item" style="width: 100%;" alt="">
+         </div>
+    }
+</div>

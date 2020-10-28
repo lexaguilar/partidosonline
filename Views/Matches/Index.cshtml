@@ -1,0 +1,21 @@
+
+
+@{
+    ViewData["Title"] = "Partidos en linea";
+}
+
+<div class="row">
+    <div class="col-md-8">
+       <h4>Próximos partidos de fútbol</h4>
+        <div id="matchesNext">
+            <h4 class="text-muted">No hay transmisiones ahora</h4>
+        </div>
+    </div>
+    <div class="col-md-4">       
+        @await Html.PartialAsync("~/Views/shared/_Paypal.cshtml")
+    </div>
+</div>
+@section Scripts
+{  
+    <script src="~/js/live.js" type="module" asp-append-version="true"></script>
+}

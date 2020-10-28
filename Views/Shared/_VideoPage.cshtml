@@ -1,0 +1,35 @@
+@model Matches
+<link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet">
+
+ <h4>
+    <span class="badge badge-secondary" style="background-color: #F44336; padding: 0px 10px;">Online <svg style="width: 25px;" id="i-feed" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="2">
+            <circle cx="6" cy="26" r="2" fill="currentColor" />
+            <path d="M4 15 C11 15 17 21 17 28 M4 6 C17 6 26 15 26 28" />
+        </svg>
+    </span>
+</h4>
+ <table style="">
+                        <tr>
+                            <td width="150px" style="text-align: center;"><img width="100px" src="/images/@Model.TeamHome.ImageName" alt=""></td>
+                            <td width="50px" style="text-align: center;"><p id="atTime">Vs</p></td>
+                            <td width="150px" style="text-align: center;"><img width="100px" src="/images/@Model.TeamAway.ImageName" alt=""></td>
+                        </tr></table>
+<h3>@Model.TeamHome.Name vs @Model.TeamAway.Name</h3><span id="viendo" class="text-muted">
+    0 viendo
+</span>
+<video id='hls-example' class="video-js vjs-default-skin" width="700" height="500" controls>
+    <source type="application/x-mpegURL" src="@Model.Url">
+</video>
+
+<script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.14.1/videojs-contrib-hls.js"></script>
+<script src="https://vjs.zencdn.net/7.2.3/video.js"></script>
+
+<script>
+    var player = videojs('hls-example');
+    player.play();    
+</script>
+ 
+<script src="~/js/site.js" type="module" asp-append-version="true"></script>

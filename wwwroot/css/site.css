@@ -89,19 +89,15 @@ h1 {
 
 li {
     display: inline-block;
-    font-size: 1.5em;
+    font-size: 1em;
     list-style-type: none;
-    padding: 1em;
+    padding: 0em;
     text-transform: uppercase;
 }
 
 li span {
     display: block;
-    font-size: 4.5rem;
-}
-
-.message {
-    font-size: 4rem;
+    font-size: 1rem;
 }
 
 #content {
@@ -109,19 +105,24 @@ li span {
     padding: 1rem;
 }
 
-.emoji {
-    padding: 0 .25rem;
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
 }
 
-@media all and (max-width: 768px) {
-    h1 {
-        font-size: 1.5rem;
+@media (min-width: 768px) {
+    video {
+        width: 400px;
     }
-    li {
-        font-size: 1.125rem;
-        padding: .75rem;
-    }
-    li span {
-        font-size: 3.375rem;
+}
+
+@media (min-width: 1200px) {
+    video {
+        width: 400px;
     }
 }

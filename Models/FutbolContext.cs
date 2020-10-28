@@ -16,7 +16,9 @@ namespace OnlineFutbol.Models
         }
 
         public virtual DbSet<Matches> Matches { get; set; }
+        public virtual DbSet<MatchesViewers> MatchesViewers { get; set; }
         public virtual DbSet<Teams> Teams { get; set; }
+        public virtual DbSet<Viewers> Viewers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -56,6 +58,13 @@ namespace OnlineFutbol.Models
                     .HasConstraintName("FK_Matches_Teams");
             });
 
+            modelBuilder.Entity<MatchesViewers>(entity =>
+            {
+                entity.HasKey(e => e.MatchId);
+
+                entity.Property(e => e.MatchId).ValueGeneratedNever();
+            });
+
             modelBuilder.Entity<Teams>(entity =>
             {
                 entity.Property(e => e.ImageName)
@@ -64,6 +73,18 @@ namespace OnlineFutbol.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Viewers>(entity =>
+            {
+                entity.HasIndex(e => e.MatchId);
+
+                entity.Property(e => e.Added).HasColumnType("datetime");
+
+                entity.Property(e => e.Uid)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);

@@ -1,8 +1,30 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿import http from './http.js';
+import { selector } from './manager.js';
 
-// Write your JavaScript code.
+const generateUid = length =>
+{
+    let result = '';
+    let alpha = 'ABCDEGFHIJKLMNOPQRSTUVWXZY';
+    let characters = alpha + alpha.toLocaleLowerCase() + '0123456789';
+    let MyLength = characters.length;
+    for (let index = 0; index < length; index++) {
+        result += characters.charAt(Math.floor(Math.random() * MyLength));
+        
+    }
+    return result;
+}
 
-import http from './http.js';
+const getMatch = () => selector('matchId');
 
-const userId = 
+
+const userId = generateUid(15);
+const match = getMatch();
+
+if(match){
+    setInterval(() =>
+    {        
+        http(`admin/match/${match.value}/viewer/${userId}`).asGet().then(total =>{
+            selector('viendo').innerHTML = total + ' viendo'
+        });
+    },5000)
+}

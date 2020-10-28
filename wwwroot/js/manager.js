@@ -1,6 +1,8 @@
+import http from "./http.js";
+
 const selector = target => document.querySelector(`#${target}`);
 
-const viewMatchNow = id => `<a style="margin-top: 10px;" href="/home/live/${id}" class="btn btn-outline-secondary btn-block">Ver ahora</a>`;
+const viewMatchNow = id => `<a style="margin-top: 10px;" href="/matches/stream/${id}" class="btn btn-outline-secondary btn-block">Ver ahora</a>`;
 
 const viewMatchesNext = id => `<div class="container">
 <h1 id="headline">Faltan:</h1>
@@ -11,13 +13,6 @@ const viewMatchesNext = id => `<div class="container">
     <li><span id="minutes"></span>minutos</li>
     <li><span id="seconds"></span>segundos</li>
   </ul>
-</div>
-<div class="message">
-  <div id="content">
-    <span class="emoji"></span>
-    <span class="emoji"></span>
-    <span class="emoji"></span>
-  </div>
 </div>
 </div>`;
 
@@ -35,23 +30,16 @@ let setCountDown = (date,id) => {
                 distance = countDown - now;
 
             document.getElementById("days").innerText = Math.floor(distance / (day)),
-                document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
-                document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+                document.getElementById("hours").innerText = String(Math.floor((distance % (day)) / (hour))).padStart(2, "0"),
+                document.getElementById("minutes").innerText = String(Math.floor((distance % (hour)) / (minute))).padStart(2, "0"),
                 document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
 
             //do something later when date is reached
             if (distance < 0) {
-                let headline = document.getElementById("headline"),
-                    countdown = document.getElementById("countdown"),
-                    content = document.getElementById("content");
-
-                // headline.innerText = "It's my birthday!";
-                // countdown.style.display = "none";
-                // content.style.display = "block";
-
+               
                 clearInterval(x);
 
-                window.location = path + 'home/live/'+id
+                window.location = path + 'matches/stream/'+id
             }
             //seconds
         }, 0)
@@ -74,9 +62,26 @@ const tableNext = match =>{
         <td width="150px" style="text-align: center;"><img width="100px" src="/images/${match.teamAwayImageName}" alt=""></td>
     </tr>
     <tr style="border-top: solid 1px #efefef;">
-        <td colspan="3" style="text-align: center;"><a href="/home/live/${match.id}" class="btn btn-outline-secondary btn-block">Ver</a></td>
+        <td colspan="3" style="text-align: center;"><a href="/matches/stream/${match.id}" class="btn btn-outline-secondary btn-block">Ver</a></td>
     </tr>
 </table>`;
 }
 
-export { selector, viewMatchNow, viewMatchesNext, setCountDown, tableNext }
+const nextMatches = (id=0) => {
+
+    http('live/coming/' + id).asGet().then(data => {
+        if(data){        
+            let div = selector('matchesNext');
+            let html = '';
+            data.forEach(match =>{
+                html +=  tableNext(match);
+            });
+            
+            if(html.length > 0)
+                div.innerHTML = html;
+        }
+    });
+
+}
+
+export { selector, viewMatchNow, viewMatchesNext, setCountDown, tableNext, nextMatches }
