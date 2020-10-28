@@ -8,7 +8,3 @@ http('live/main').asGet().then(data => {
             setCountDown(data.eventDate, data.id);
     }
 });
-
-let myId = selector('matchId');
-
-nextMatches(myId.value);

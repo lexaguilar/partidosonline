@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Partidos en linea";
 }
-
+<input type="hidden" name="" id="matchId" value="@Model.Id">
 <div class="row">
     <div class="col-md-8">       
         <img src="/images/@(Model.Id).jpg" style="width: 100%;" alt="">
@@ -16,6 +16,11 @@
         </a>
     </div>
     <div class="col-md-4">       
+        @await Html.PartialAsync("~/Views/shared/_Next.cshtml")
         @await Html.PartialAsync("~/Views/shared/_Paypal.cshtml")
     </div>
 </div>
+@section Scripts
+{  
+    <script src="~/js/next.js" type="module" asp-append-version="true"></script>   
+}
