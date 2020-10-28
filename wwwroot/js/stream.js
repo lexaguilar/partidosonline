@@ -1,7 +1,9 @@
 import http from './http.js';
 import { selector, setCountDown, nextMatches } from './manager.js';
 
-http('live/main').asGet().then(data => {
+let myid = selector('matchId');
+
+http('live/main/'+ myid.value).asGet().then(data => {
     if(data){     
 
         if(!data.isLive)

@@ -62,6 +62,26 @@ namespace OnlineFutbol.Controllers
             return Json(match);
         }
 
+         [HttpGet("live/main/{id}")]
+        public IActionResult Main(int id)
+        {
+            var match = db.Matches
+            .Include(x => x.TeamAway)
+            .Include(x =>x.TeamHome)
+            .Select(x => new{
+                x.Id,
+                x.EventDate,
+                x.Priority,
+                TeamHome = x.TeamHome.Name,
+                TeamAway = x.TeamAway.Name,
+                IsLive = x.IsLive??false,
+            })           
+            .FirstOrDefault(x => x.Id == id);
+
+            return Json(match);
+        }
+
+
          [HttpGet("live/next")]
         public IActionResult Next()
         {
