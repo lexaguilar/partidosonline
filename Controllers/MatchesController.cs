@@ -26,6 +26,15 @@ namespace OnlineFutbol.Controllers
             return View();
         }
 
+        public IActionResult Preview(int id)
+        {
+            var match = db.Matches
+            .Include(x => x.TeamHome)
+            .Include(x => x.TeamAway)
+            .FirstOrDefault(x => x.Id == id);
+            return View(match);
+        }
+
         public IActionResult Stream(int id)
         {
             var match = db.Matches

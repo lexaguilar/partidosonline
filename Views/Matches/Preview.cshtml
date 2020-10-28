@@ -1,0 +1,21 @@
+@model Matches
+@{
+    ViewData["Title"] = "Partidos en linea";
+}
+
+<div class="row">
+    <div class="col-md-8">       
+        <img src="/images/@(Model.Id).jpg" style="width: 100%;" alt="">
+        <a href="/matches/stream/@Model.Id" class="btn btn-outline-secondary btn-block">
+        @if(Model.IsLive??false){
+            <b>Ver ahora</b>
+        }else{
+            <b>Ver horario</b>
+
+        }
+        </a>
+    </div>
+    <div class="col-md-4">       
+        @await Html.PartialAsync("~/Views/shared/_Paypal.cshtml")
+    </div>
+</div>
