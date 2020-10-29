@@ -1,0 +1,24 @@
+@model Matches
+
+@{
+    ViewData["Title"] = "En vivo";
+}
+<input type="hidden" name="" id="matchId" value="@Model.Id">
+<div class="row">
+    <div class="col-md-8">       
+        <div id="matchMain"> 
+            @await Html.PartialAsync("~/Views/shared/_VideoPage2.cshtml", Model)            
+        </div>
+    </div>
+    <div class="col-md-4">
+        @await Html.PartialAsync("~/Views/shared/_Next.cshtml")
+        @await Html.PartialAsync("~/Views/shared/_Paypal.cshtml")
+
+    </div>
+</div>
+@section Scripts
+{  
+    <script src="~/js/stream.js" type="module" asp-append-version="true"></script>   
+    <script src="~/js/next.js" type="module" asp-append-version="true"></script>   
+    
+}

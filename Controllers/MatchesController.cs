@@ -32,10 +32,28 @@ namespace OnlineFutbol.Controllers
             .Include(x => x.TeamHome)
             .Include(x => x.TeamAway)
             .FirstOrDefault(x => x.Id == id);
+
+            if(match == null)
+                match = new Matches{
+                    Id=id,
+                    TeamAway = new Teams{ Name = "" },
+                    TeamHome = new Teams{ Name = "" }
+                };
+
             return View(match);
         }
 
         public IActionResult Stream(int id)
+        {
+            var match = db.Matches
+            .Include(x => x.TeamHome)
+            .Include(x => x.TeamAway)
+            .FirstOrDefault(x => x.Id == id);         
+
+            return View(match);
+        }
+
+        public IActionResult Option2(int id)
         {
             var match = db.Matches
             .Include(x => x.TeamHome)
@@ -60,7 +78,7 @@ namespace OnlineFutbol.Controllers
             db.SaveChanges();
            //}
 
-           var total = db.Viewers.Where(x => x.MatchId == id && x.Added >= DateTime.Now.AddSeconds(-5));
+           var total = db.Viewers.Where(x => x.MatchId == id).Select(x => x.Uid).Distinct();
            return Json(total.Count());
         }
     }

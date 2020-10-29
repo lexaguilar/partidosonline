@@ -1,6 +1,6 @@
 @model Matches
 @{
-    ViewData["Title"] = "Partidos en linea";
+    ViewData["Title"] = @Model.TeamHome.Name + " vs " + @Model.TeamAway.Name;
 }
 <input type="hidden" name="" id="matchId" value="@Model.Id">
 <div class="row">

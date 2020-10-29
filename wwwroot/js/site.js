@@ -26,5 +26,5 @@ if(match){
         http(`admin/match/${match.value}/viewer/${userId}`).asGet().then(total =>{
             selector('viendo').innerHTML = total + ' viendo'
         });
-    },5000)
+    },20000)
 }
