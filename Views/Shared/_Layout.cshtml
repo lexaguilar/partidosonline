@@ -26,21 +26,23 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Online Futbol</a>                
+            <div class="container" style="display: block;">
+                
+                <div id="fb-root"></div>  
+                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v8.0&appId=774523200056951&autoLogAppEvents=1" nonce="lgAYDF1E"></script>
+                <div class="fb-page" data-href="https://www.facebook.com/Futbol-Online-104357434799301/" 
+                    data-tabs="" data-width="" data-height="" data-small-header="true" 
+                    data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="false">
+                    <blockquote cite="https://www.facebook.com/Futbol-Online-104357434799301/" class="fb-xfbml-parse-ignore">
+                        <a href="https://www.facebook.com/Futbol-Online-104357434799301/">Futbol Online</a>
+                    </blockquote>
+                </div>        
             </div>
         </nav>
     </header>
     <div class="container">
-        <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v8.0&appId=774523200056951&autoLogAppEvents=1" nonce="lgAYDF1E"></script>
-        <div class="fb-page" data-href="https://www.facebook.com/Futbol-Online-104357434799301/" 
-            data-tabs="" data-width="" data-height="" data-small-header="true" 
-            data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="false">
-            <blockquote cite="https://www.facebook.com/Futbol-Online-104357434799301/" class="fb-xfbml-parse-ignore">
-                <a href="https://www.facebook.com/Futbol-Online-104357434799301/">Futbol Online</a>
-            </blockquote>
-        </div>
+        
+      
         @RenderBody()
     </div>
 

@@ -10,15 +10,10 @@
         </svg>
     </span>
 </h4>
- <table style="">
-                        <tr>
-                            <td width="150px" style="text-align: center;"><img width="100px" src="/images/@Model.TeamHome.ImageName" alt=""></td>
-                            <td width="50px" style="text-align: center;"><p id="atTime">Vs</p></td>
-                            <td width="150px" style="text-align: center;"><img width="100px" src="/images/@Model.TeamAway.ImageName" alt=""></td>
-                        </tr></table>
 <h3>@Model.TeamHome.Name vs @Model.TeamAway.Name</h3><span id="viendo" class="text-muted">
     0 viendo
 </span>
+
 <video id='hls-example' class="video-js vjs-default-skin" width="700" height="500" controls>
     <source type="application/x-mpegURL" src="@Model.Url">
 </video>
@@ -33,5 +28,4 @@
     var player = videojs('hls-example');
     player.play();    
 </script>
- 
 <script src="~/js/site.js" type="module" asp-append-version="true"></script>
