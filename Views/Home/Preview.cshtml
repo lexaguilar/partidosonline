@@ -4,7 +4,7 @@
 }
 
 <h4>Partido aun no inicia</h4>
-<input type="hidden" asp-for="Id">
+<input type="hidden" name="" id="Id" value="@StringCipher.Encrypt(Model.Id)">
 <div class="row">
         <div class="col-md-8">
             <table style="border: solid 1px #efefef;">

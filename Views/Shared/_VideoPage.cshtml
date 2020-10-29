@@ -17,7 +17,7 @@
 <video id='hls-example' class="video-js vjs-default-skin" width="700" height="500" controls>
     <source type="application/x-mpegURL" src="@Model.Url">
 </video>
-<a href="/matches/option2/@Model.Id" class="">
+<a href="/matches/option2/@StringCipher.Encrypt(Model.Id)" class="">
      Opcion 2  
 </a>
 <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>

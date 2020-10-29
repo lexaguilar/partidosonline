@@ -48,7 +48,8 @@ namespace OnlineFutbol.Controllers
             .Include(x => x.TeamAway)
             .Include(x =>x.TeamHome)
             .Select(x => new{
-                x.Id,
+                 Id = StringCipher.Encrypt(x.Id),
+                _Id = x.Id,
                 x.EventDate,
                 x.Priority,
                 TeamHome = x.TeamHome.Name,
@@ -63,20 +64,23 @@ namespace OnlineFutbol.Controllers
         }
 
          [HttpGet("live/main/{id}")]
-        public IActionResult Main(int id)
+        public IActionResult Main(string id)
         {
+            var matchId = StringCipher.Decrypt(id);
+
             var match = db.Matches
             .Include(x => x.TeamAway)
             .Include(x =>x.TeamHome)
             .Select(x => new{
-                x.Id,
+                Id = StringCipher.Encrypt(x.Id),
+                _Id = x.Id,
                 x.EventDate,
                 x.Priority,
                 TeamHome = x.TeamHome.Name,
                 TeamAway = x.TeamAway.Name,
                 IsLive = x.IsLive??false,
             })           
-            .FirstOrDefault(x => x.Id == id);
+            .FirstOrDefault(x =>x._Id != matchId);
 
             return Json(match);
         }
@@ -89,7 +93,8 @@ namespace OnlineFutbol.Controllers
             .Include(x => x.TeamAway)
             .Include(x =>x.TeamHome)
             .Select(x => new{
-                x.Id,
+                 Id = StringCipher.Encrypt(x.Id),
+                _Id = x.Id,
                 x.EventDate,
                 x.Priority,
                 TeamHome = x.TeamHome.Name,
@@ -103,22 +108,25 @@ namespace OnlineFutbol.Controllers
         }
 
         [HttpGet("live/coming/{id}")]
-        public IActionResult Next(int id)
+        public IActionResult Next(string id)
         {
+           var matchId =  StringCipher.Decrypt(id);
+
            var matches = db.Matches
             .Include(x => x.TeamAway)
             .Include(x =>x.TeamHome)
+            .Where(x => x.EventDate > DateTime.Now.AddHours(-2) && x.Id != matchId)
             .Select(x => new{
-                x.Id,
+                Id = StringCipher.Encrypt(x.Id),
+                _Id = x.Id,
                 x.EventDate,
                 x.Priority,
                 TeamHome = x.TeamHome.Name,
                 TeamAway = x.TeamAway.Name,
                 TeamHomeImageName = x.TeamHome.ImageName,
                 TeamAwayImageName = x.TeamAway.ImageName,
-            })
-            .Where(x => x.EventDate > DateTime.Now.AddHours(-2) && x.Id != id)
-            .OrderBy(x => x.Id);
+            })           
+            .OrderBy(x => x._Id);
             return Json(matches);
         }
 

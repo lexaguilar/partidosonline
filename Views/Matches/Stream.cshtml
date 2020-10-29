@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = @Model.TeamHome.Name + " vs " + @Model.TeamAway.Name;
 }
-<input type="hidden" name="" id="matchId" value="@Model.Id">
+<input type="hidden" name="" id="matchId" value="@StringCipher.Encrypt(Model.Id)">
 <div class="row">
     <div class="col-lg-8 col-md-12 col-sm-12">       
         <div id="matchMain">  

@@ -2,7 +2,8 @@
 @{
     ViewData["Title"] = @Model.TeamHome.Name + " vs " + @Model.TeamAway.Name;
 }
-<input type="hidden" name="" id="matchId" value="@Model.Id">
+<input type="hidden" name="" id="matchId" value="@StringCipher.Encrypt(Model.Id)">
+
 <div class="row">
     <div class="col-md-8">       
         <img src="/images/@(Model.Id).jpg" style="width: 100%;" alt="">

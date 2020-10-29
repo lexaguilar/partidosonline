@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "En vivo";
 }
-<input type="hidden" name="" id="matchId" value="@Model.Id">
+<input type="hidden" name="" id="matchId" value="@StringCipher.Encrypt(Model.Id)">
 <div class="row">
     <div class="col-md-8">       
         <div id="matchMain"> 
