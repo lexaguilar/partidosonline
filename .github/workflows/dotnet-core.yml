@@ -27,15 +27,15 @@ jobs:
       run: |
         dotnet publish -c Release -o dotnetcorewebapp    
         
-    - name: 'Run Azure webapp deploy action using publish profile credentials'
-      uses: Azure/webapps-deploy@v1
-      with: 
-        app-name: partidoonline # Replace with your app name
-        publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE  }} # Define secret variable in repository settings as per action documentation
-        package: './dotnetcorewebapp'
+    # - name: 'Run Azure webapp deploy action using publish profile credentials'
+    #   uses: Azure/webapps-deploy@v1
+    #   with: 
+    #     app-name: partidoonline # Replace with your app name
+    #     publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE  }} # Define secret variable in repository settings as per action documentation
+    #     package: './dotnetcorewebapp'
     
     - name: Send Push Notification
       uses: techulus/push-github-action@1.0.0
       env:
         API_KEY: ${{ secrets.API_KEY }}
-        MESSAGE: "Nueva publicacion de partidos online link https://partidosonline.azurewebsites.net/"
+        MESSAGE: "Nueva publicacion de partidos online link http://onlinefutbol.qrcube.net/"

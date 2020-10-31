@@ -12,7 +12,10 @@
                 @await Html.PartialAsync("~/Views/shared/_VideoPage.cshtml", Model)
             }else{
                 <div class="container">
+                   
+
                     <table style="border: solid 1px #efefef;">
+                       
                         <tr>
                             <td width="150px" style="text-align: center;">@Model.TeamHome.Name </td>
                             <td width="50px" style="text-align: center;">VS</td>
@@ -20,7 +23,7 @@
                         </tr>
                         <tr>
                             <td width="150px" style="text-align: center;"><img width="100px" src="/images/@Model.TeamHome.ImageName" alt=""></td>
-                            <td width="50px" style="text-align: center;"><p id="atTime">@Model.EventDate</p></td>
+                            <td width="50px" style="text-align: center;"><p id="atTime"></p></td>
                             <td width="150px" style="text-align: center;"><img width="100px" src="/images/@Model.TeamAway.ImageName" alt=""></td>
                         </tr>
                         
@@ -60,7 +63,9 @@
     <script src="~/js/stream.js" type="module" asp-append-version="true"></script>   
     <script src="~/js/next.js" type="module" asp-append-version="true"></script>  
     <script>
-         var $video  = $('#hls-example'),
+        
+        document.querySelector('#atTime').innerText = moment('@Model.EventDate', "DD/MM/YYYY hh:mm:ss").calendar()
+        var $video  = $('#hls-example'),
         $window = $(window); 
 
         $(window).resize(function(){
@@ -68,16 +73,6 @@
              let width = $(matchMain).width();             
               $video.css('width', width);
               $video.css('height', width * 0.62);
-           // if(width)
-              //  $video.css({'width', width, 'height': width * 0.714});
-           //// var videoWidth = $video.width(),
-             //   windowWidth = $window.width(),
-            //marginLeftAdjust =   (windowWidth - videoWidth) / 2;
-
-         // //  $video.css({
-         //       'height': height, 
-         //       'marginLeft' : marginLeftAdjust
-         //   });
         }).resize();  
     </script>    
     

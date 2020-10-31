@@ -80,7 +80,7 @@ namespace OnlineFutbol.Controllers
                 TeamAway = x.TeamAway.Name,
                 IsLive = x.IsLive??false,
             })           
-            .FirstOrDefault(x =>x._Id != matchId);
+            .FirstOrDefault(x =>x._Id == matchId);
 
             return Json(match);
         }
