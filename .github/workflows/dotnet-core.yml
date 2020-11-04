@@ -24,8 +24,24 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: Publish
-      run: |
-        dotnet publish -c Release -o dotnetcorewebapp    
+      run: dotnet publish -o deploy    
+      
+    - name: FTP Deploy
+    # You may pin to the exact commit or the version.
+    # uses: SamKirkland/FTP-Deploy-Action@da0d77ff390a13097c60f9b9eb954e503a480d97
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+      # Deployment destination server & path. Formatted as
+        ftp-server: ${{ secrets.FTP_SERVER }}
+        # FTP account username
+        ftp-username: ${{ secrets.FTP_USER }}
+        # FTP account password
+        ftp-password: ${{ secrets.FTP_PWD }}
+        # The local folder to copy, defaults to root project folder
+        local-dir: deploy/
+        # Passes through options into git-ftp
+        #git-ftp-args: # optional
+   
         
     # - name: 'Run Azure webapp deploy action using publish profile credentials'
     #   uses: Azure/webapps-deploy@v1
@@ -34,8 +50,5 @@ jobs:
     #     publish-profile: ${{ secrets.AZUREWEBAPPPUBLISHPROFILE  }} # Define secret variable in repository settings as per action documentation
     #     package: './dotnetcorewebapp'
     
-    - name: Send Push Notification
-      uses: techulus/push-github-action@1.0.0
-      env:
-        API_KEY: ${{ secrets.API_KEY }}
-        MESSAGE: "Nueva publicacion de partidos online link http://onlinefutbol.qrcube.net/"
+
+   
