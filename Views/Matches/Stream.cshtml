@@ -64,7 +64,7 @@
     <script src="~/js/next.js" type="module" asp-append-version="true"></script>  
     <script>
         
-        document.querySelector('#atTime').innerText = moment('@Model.EventDate', "DD/MM/YYYY hh:mm:ss").calendar()
+        document.querySelector('#atTime').innerText = moment('@Model.EventDate.ToString("dd/MM/yyyy HH:mm:ss")', "DD/MM/YYYY hh:mm:ss").calendar()
         var $video  = $('#hls-example'),
         $window = $(window); 
 
