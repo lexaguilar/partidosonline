@@ -51,7 +51,31 @@
             &copy; 2020 - Partidos en vivo - Power by <a asp-area="" asp-controller="Home" asp-action="Privacy">Futbol</a>
         </div>
     </footer>
-    
+    <div class="modal" tabindex="-1" role="dialog" id="mymodal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <img src="~/images/logo.jpg" width="42" alt="">
+                <h5 class="modal-title">Seguir Futbol Online</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="fb-page" data-href="https://www.facebook.com/Futbol-Online-104357434799301/" 
+                    data-tabs="" data-width="" data-height="" data-small-header="true" 
+                    data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="false">
+                    <blockquote cite="https://www.facebook.com/Futbol-Online-104357434799301/" class="fb-xfbml-parse-ignore">
+                        <a href="https://www.facebook.com/Futbol-Online-104357434799301/">Futbol Online</a>
+                    </blockquote>
+                </div>  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="cerrar()">Cerrar</button>
+            </div>
+            </div>
+        </div>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>    
     <script src="~/js/moment.js" asp-append-version="true"></script>
@@ -60,6 +84,17 @@
     <script type="text/javascript">
         var path = '@Url.Content("~/")';
         moment.locale('es-mx');
+
+        let show = localStorage.getItem('model');
+        if(!show){
+            $('#mymodal').modal();
+        }
+
+        const cerrar = () => {
+            localStorage.setItem('model', true);
+            $('#mymodal').modal('hide');
+        }
+
     </script>
     @RenderSection("Scripts", required: false)
 </body>
