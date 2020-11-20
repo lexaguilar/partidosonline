@@ -1,7 +1,8 @@
-@model Matches
+﻿@model Matches
 
 @{
     ViewData["Title"] = @Model.TeamHome.Name + " vs " + @Model.TeamAway.Name;
+   
 }
 <input type="hidden" name="" id="matchId" value="@StringCipher.Encrypt(Model.Id)">
 <div class="row">
@@ -28,26 +29,19 @@
                         </tr>
                         
                         <tr>
-                            <td style="text-align: center;" colspan="3">Empieza en:</td>
+                            <td style="text-align: center;" colspan="3">Horario</td>
                         </tr>
                         <tr>
                             <td  style="text-align: center;" colspan="3">
-                                <div id="countdown">
-                                    <ul>
-                                        <li><span id="days"></span>dias</li>
-                                        <li><span>:</span><p style="color: white;">,</p></li>
-                                        <li><span id="hours"></span>horas</li>
-                                        <li><span>:</span><p style="color: white;">,</p></li>
-                                        <li><span id="minutes"></span>min</li>
-                                        <li><span>:</span><p style="color: white;">,</p></li>
-                                        <li><span id="seconds"></span>seg</li>
-                                    </ul>
-                                </div>       
+                               <div id="eventDate">
+                                   @Model.EventDate
+                               </div>
+                              
                             </td>
-                        </tr>            
-                       
+                        </tr>                       
                     </table>                   
-                                 
+
+                
                 </div>
             }
         </div>
@@ -55,9 +49,9 @@
     <div class="col-lg-4 col-md-6 col-sm-6">
         @await Html.PartialAsync("~/Views/shared/_Next.cshtml")
         @await Html.PartialAsync("~/Views/shared/_Paypal.cshtml")
-
     </div>
 </div>
+
 @section Scripts
 {  
     <script src="~/js/stream.js" type="module" asp-append-version="true"></script>   

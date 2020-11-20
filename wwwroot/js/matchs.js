@@ -11,6 +11,7 @@ var store = new DevExpress.data.CustomStore({
 
     },
     insert: (data) => {
+
         return new Promise(resolve =>
             http('admin/matchs-insert').asPost(data).then(result => {
                 DevExpress.ui.notify('data added');

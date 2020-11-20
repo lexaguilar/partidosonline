@@ -42,6 +42,7 @@ namespace OnlineFutbol.Controllers
         [HttpPost("admin/matchs-insert")]
         public IActionResult MatchsInsert([FromBody] Matches match)
         {
+            match.EventDate = match.EventDate.AddHours(-6);
             db.Matches.Add(match);
             db.SaveChanges();
             return Json(match);

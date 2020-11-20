@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 namespace OnlineFutbol
@@ -24,5 +25,10 @@ namespace OnlineFutbol
             return Convert.ToInt32(id / value);
         }
 
+    }
+
+    public static class TimerZone
+    {
+        
     }
 }
